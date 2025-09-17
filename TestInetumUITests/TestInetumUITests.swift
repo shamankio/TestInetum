@@ -23,12 +23,29 @@ final class TestInetumUITests: XCTestCase {
     }
 
     @MainActor
-    func testExample() throws {
+    func testInitialData() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let predicate = NSPredicate(format: "identifier CONTAINS 'item.'")
+        let items = app.descendants(matching: .any).matching(predicate)
+        XCTAssertTrue(items.count > 0, "experctting more than 0 items")
+        
+    }
+    @MainActor
+    func testSearchViewShown() throws {
+        let app = XCUIApplication()
+        app.launch()
+        let searchView = app/*@START_MENU_TOKEN@*/.textFields["searchView"]/*[[".otherElements",".textFields[\"Suche\"]",".textFields[\"searchView\"]",".textFields"],[[[-1,2],[-1,1],[-1,3],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        XCTAssertTrue(searchView.exists, "search view is not shown")
+    }
+    @MainActor
+    func testexpandButtonState() throws {
+        let app = XCUIApplication()
+        app.activate()
+        app/*@START_MENU_TOKEN@*/.buttons["item.Bernd Schmitt"]/*[[".otherElements.buttons[\"item.Bernd Schmitt\"]",".buttons[\"item.Bernd Schmitt\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        let postText = app.staticTexts["7619*"]
+        XCTAssertTrue(postText.exists, "expanded text is not shown")
     }
 
     @MainActor
