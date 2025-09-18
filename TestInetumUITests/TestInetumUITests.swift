@@ -47,6 +47,13 @@ final class TestInetumUITests: XCTestCase {
         let postText = app.staticTexts["7619*"]
         XCTAssertTrue(postText.exists, "expanded text is not shown")
     }
+    @MainActor
+    func testNavbarState() throws {
+        let app = XCUIApplication()
+        app.activate()
+        let navBar = app.navigationBars["Adressen"]
+        XCTAssertTrue(navBar.exists, "navigation bar is not shown")
+    }
 
     @MainActor
     func testLaunchPerformance() throws {
