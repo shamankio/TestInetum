@@ -13,23 +13,23 @@ struct SearchBarView: View {
     var body: some View {
                HStack {
                    Image(systemName: "magnifyingglass")
-                       .foregroundColor(Color("ColorGray400"))
+                       .foregroundColor(Color.colorGray400)
                    
                    TextField("Suche", text: $searchTerm)
-                       .font(.system(size: 17))
+                       .font(.body)
                        .onChange(of: searchTerm) { oldValue, newValue in
                            onSearchTextChanged(newValue)
                        }
                    if searchTerm.isEmpty {
                        Image(systemName: "magnifyingglass")
-                           .foregroundColor(Color("ColorGray400"))
+                           .foregroundColor(Color.colorGray400)
                    }else {
                        Button {
                            searchTerm = ""
                        } label: {
                            Image(systemName:"multiply.circle.fill")
                        }
-                       .foregroundColor(Color("ColorGray400"))
+                       .foregroundColor(Color.colorGray400)
                    }
                   
                }
