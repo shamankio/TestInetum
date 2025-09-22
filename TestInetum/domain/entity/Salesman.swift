@@ -8,7 +8,7 @@
 import Foundation
 
 struct Salesman: Identifiable, Equatable {
-    var id = UUID()
+    let id = UUID()
     let name: String
     let areas: [String]
 }
